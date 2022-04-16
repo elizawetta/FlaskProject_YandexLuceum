@@ -1,1 +1,1 @@
-# FlaskProject_YandexLuceum
+# FlaskProject_YandexLyceum
