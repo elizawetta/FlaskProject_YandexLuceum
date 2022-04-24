@@ -7,23 +7,21 @@
     <link rel="stylesheet" type="text/css" href="static/css/style.css"/>
 </head>
 <body class="layered-image">
-<form class="form-control reg-form">
+<form class="form-control reg-form" method="post">
     <p class="display-6 text-center"> Регистрация</p>
     <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Логин</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">Логин должен состоять только из латинских букв и цифр.</div>
+        <label for="login" class="form-label">Логин</label>
+        <input type="text" class="form-control" id="login" name="login">
+        <div id="loginHelp" class="form-text">Логин должен состоять только из латинских букв и цифр.</div>
     </div>
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Пароль</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
+        <label for="password" class="form-label">Пароль</label>
+        <input type="text" class="form-control" id="password" name="password">
         <div id="passwordHelp" class="form-text">Пароль должен содержать не менее восьми знаков, включать буквы и
             цифры.
         </div>
     </div>
-    <a href="login" style="display: block; margin-left: auto; margin-right: auto">
-        <button type="button" class="btn btn-primary">Зарегистрироваться</button>
-    </a>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
 
 </form>
 </body>
