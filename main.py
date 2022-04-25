@@ -44,12 +44,15 @@ def reg():
     if request.method == 'GET':
         return render_template("register.html")
     elif request.method == 'POST':
-        new_user = User()
-        new_user.login = request.form['login']
-        new_user.salt, new_user.hash_password = hsh.make_hash_password(request.form['password'])
-        new_user.password = request.form['password']
-        db_sess.add(new_user)
-        db_sess.commit()
+        if not db_sess.query(User).filter(User.login == request.form['login']).all():
+            new_user = User()
+            new_user.login = request.form['login']
+            new_user.salt, new_user.hash_password = hsh.make_hash_password(request.form['password'])
+            new_user.password = request.form['password']
+            db_sess.add(new_user)
+            db_sess.commit()
+        else:
+            return render_template("register.html", status='Пользователь с таким именем существует')
         return redirect('/login')
 
 
