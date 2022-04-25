@@ -16,12 +16,14 @@
     </div>
     <div class="mb-3">
         <label for="password" class="form-label">Пароль</label>
-        <input type="text" class="form-control" id="password" name="password">
+        <input type="password" class="form-control" id="password" name="password">
         <div id="passwordHelp" class="form-text">Пароль должен содержать не менее восьми знаков, включать буквы и
             цифры.
         </div>
     </div>
+    <div class="form-text" style="color: red">{{status}}</div>
     <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+
 
 </form>
 </body>
