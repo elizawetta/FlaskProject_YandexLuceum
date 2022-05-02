@@ -7,20 +7,23 @@
     <link rel="stylesheet" type="text/css" href="static/css/style.css"/>
 </head>
 <body class="layered-image">
-<form class="form-control reg-form">
-    <p class="display-6 text-center"> Войти в аккаунт</p>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Логин</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Пароль</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <a href="user" style="display: block; margin-left: auto; margin-right: auto">
-        <button type="button" class="btn btn-primary">Войти</button>
-    </a>
 
+<form action="" method="post" class="form-control reg-form">
+    {{ form.hidden_tag() }}
+    <p class="display-6 text-center"> Войти в аккаунт</p>
+    <p class="mb-3">
+        {{ form.login.label }}<br>
+        {{ form.login(class="form-control", type="text") }}<br>
+    </p>
+    <p class="mb-3">
+        {{ form.password.label }}<br>
+        {{ form.password(class="form-control", type="password") }}<br>
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary", style="display: block; margin-left: auto; margin-right:
+        auto") }}</p>
+    <div>{{ message }}</div>
 </form>
+
+
 </body>
 </html>

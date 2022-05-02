@@ -1,8 +1,6 @@
-from flask import Flask, render_template, redirect
+from flask import render_template, redirect, Flask, request
 from data import db_session
-from flask_login import LoginManager, login_user
-import requests
-from flask import Flask, url_for, request
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from data.__all_models import *
 import hashing as hsh
 
@@ -14,7 +12,6 @@ login_manager.init_app(app)
 
 @login_manager.user_loader
 def load_user(user_id):
-    db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
 
 
@@ -23,20 +20,26 @@ def index():
     return render_template("index.html")
 
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect("/")
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # form = LoginForm()
-    # if form.validate_on_submit():
-    #     db_sess = db_session.create_session()
-    #     user = db_sess.query(User).filter(User.login == form.login.data).first()
-    #     if user and user.check_password(form.password.data):
-    #         login_user(user, remember=form.remember_me.data)
-    #         return redirect("/")
-    #     return render_template('login.html',
-    #                            message="Неправильный логин или пароль",
-    #                            form=form)
-    # return render_template('login.html', title='Авторизация', form=form)
-    return render_template('login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = db_sess.query(User).filter(User.login == form.login.data).first()
+        if user and user.check_password(form.password.data):
+            login_user(user)
+            return redirect("/user")
+        return render_template('login.html',
+                               message="Неправильный логин или пароль",
+                               form=form)
+    return render_template('login.html', title='Авторизация', form=form)
+    # return render_template('login.html')
 
 
 @app.route('/reg', methods=['GET', 'POST'])
@@ -57,8 +60,9 @@ def reg():
 
 
 @app.route('/user')
+@login_required
 def user():
-    return render_template("user.html")
+    return render_template("user.html", user=current_user.login)
 
 
 if __name__ == '__main__':
