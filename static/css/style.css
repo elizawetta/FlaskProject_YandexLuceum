@@ -12,21 +12,24 @@
 
 }
 
-/*.form-control{*/
-/*    width: 40%;*/
-/*    margin: 15% auto auto;*/
-/*}*/
 .reg-form {
     width: 30%;
     margin: 15% auto auto;
     background-color: #F9DAFF;
     border-radius: 20px;
 }
+
+.add-form {
+    width: 30%;
+    margin: 20px auto auto;
+}
+
 .form_login {
     margin: 15% 20% 20%;
     background-color: #F9DAFF;
     border-radius: 50px;
 }
+
 .mb-3 {
     text-align: center;
 }
@@ -35,5 +38,13 @@
     border: none;
     background-color: #C39BD3;
     margin: auto;
-    /*border-block: lightpink;*/
+}
+
+.user {
+    background-color: #F9DAFF;
+}
+
+.psswd-table {
+    width: 60%;
+    margin: auto;
 }
