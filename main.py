@@ -59,10 +59,21 @@ def reg():
         return redirect('/login')
 
 
-@app.route('/user')
+@app.route('/user', methods=['GET', 'POST'])
 @login_required
 def user():
-    return render_template("user.html", user=current_user.login)
+    passwords = db_sess.query(Passwords).filter(Passwords.user_id == current_user.id).all()
+    if request.method == "GET":
+        return render_template("user.html", user=current_user.login, passwords=passwords)
+    elif request.method == "POST":
+        p = Passwords()
+        p.user_id = current_user.id
+        p.password = request.form['password']
+        p.cite = request.form['login']
+        db_sess.add(p)
+        db_sess.commit()
+        # print(request.form['login'], request.form['password'])
+        return render_template("user.html", user=current_user.login, passwords=passwords)
 
 
 if __name__ == '__main__':
