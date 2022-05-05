@@ -16,13 +16,16 @@
             <th>#</th>
             <th>сайт</th>
             <th>пароль</th>
+            <th></th>
         </tr>
         {% for i in passwords %}
         <tr>
             <td><strong> {{loop.index}}</strong></td>
             <td>{{i.cite}}</td>
-            <td>{{i.password}}</td>
+            <td class="view-psswd">{{i.password}}</td>
+            <td><button class="btn btn-primary">Что то типо показать пароль</button></td>
         </tr>
+
         {% endfor %}
     </table>
     <div class="display-6" style="text-align: center; margin-top: 20px">Добавить пароль</div>
