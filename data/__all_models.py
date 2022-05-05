@@ -15,7 +15,7 @@ class User(SqlAlchemyBase, UserMixin):
     login = sqlalchemy.Column(sqlalchemy.String, unique=True, nullable=False)
     hash_password = sqlalchemy.Column(sqlalchemy.LargeBinary, nullable=False)
     salt = sqlalchemy.Column(sqlalchemy.LargeBinary, nullable=False)
-    password = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    # password = sqlalchemy.Column(sqlalchemy.String, nullable=False)
 
     def check_password(self, password):
         return hsh.check_password(self.salt, self.hash_password, password)
@@ -25,7 +25,7 @@ class Passwords(SqlAlchemyBase):
     __tablename__ = "Passwords"
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, unique=True, nullable=False)
-    user_id = sqlalchemy.Column(sqlalchemy.Integer, unique=True, nullable=False)
+    user_id = sqlalchemy.Column(sqlalchemy.Integer, nullable=False)
     cite = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     password = sqlalchemy.Column(sqlalchemy.String, nullable=False)
 
