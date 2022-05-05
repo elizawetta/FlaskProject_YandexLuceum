@@ -19,9 +19,12 @@
         {{ form.password.label }}<br>
         {{ form.password(class="form-control", type="password") }}<br>
     </p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary", style="display: block; margin-left: auto; margin-right:
-        auto") }}</p>
-    <div>{{ message }}</div>
+    <div style="text-align: center">
+        <p style="color: red">{{message}}</p>
+    </div>
+    <p>{{form.submit(type="submit", class="btn btn-primary", style="display: block; margin-left: auto; margin-right:
+        auto")}}</p>
+
 </form>
 
 
