@@ -48,6 +48,8 @@ def reg():
         return render_template("register.html")
     elif request.method == 'POST':
         if not db_sess.query(User).filter(User.login == request.form['login']).all():
+            if request.form['password'].strip() == '' or request.form['login'].strip() == '':
+                return render_template("register.html", status='Введите корректные данные')
             new_user = User()
             new_user.login = request.form['login']
             new_user.salt, new_user.hash_password = hsh.make_hash_password(request.form['password'])
@@ -66,13 +68,17 @@ def user():
     if request.method == "GET":
         return render_template("user.html", user=current_user.login, passwords=passwords)
     elif request.method == "POST":
+        if request.form['password'].strip() == '' or request.form['login'].strip() == '':
+            return render_template("user.html", user=current_user.login, passwords=passwords,
+                                   message="Введите корректные данные")
+
         p = Passwords()
         p.user_id = current_user.id
         p.password = request.form['password']
         p.cite = request.form['login']
         db_sess.add(p)
         db_sess.commit()
-        # print(request.form['login'], request.form['password'])
+        passwords = db_sess.query(Passwords).filter(Passwords.user_id == current_user.id).all()
         return render_template("user.html", user=current_user.login, passwords=passwords)
 
 

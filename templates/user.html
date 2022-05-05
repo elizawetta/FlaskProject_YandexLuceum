@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="static/css/style.css"/>
     <meta charset="UTF-8">
+    <script type="text/javascript" src="../static/js/main.js"></script>
     <title></title>
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
@@ -16,14 +17,16 @@
             <th>#</th>
             <th>сайт</th>
             <th>пароль</th>
-            <th></th>
         </tr>
         {% for i in passwords %}
         <tr>
             <td><strong> {{loop.index}}</strong></td>
             <td>{{i.cite}}</td>
-            <td class="view-psswd">{{i.password}}</td>
-            <td><button class="btn btn-primary">Что то типо показать пароль</button></td>
+            <td class="view-psswd">
+                <input type="password" id="password-input" value={{i.password}}
+                       style="width: 150px" readonly>
+                <a href="" class="password-control" onclick="return show_hide_password(this);"></a>
+            </td>
         </tr>
 
         {% endfor %}
@@ -35,12 +38,18 @@
         <label for="password" class="form-label">Пароль</label>
         <input type="password" class="form-control" id="password" name="password">
         <div style="margin: 20px; text-align: center">
-            <a href="/logout">
-                <button class="btn btn-primary">Выйти из аккаунта</button>
-            </a>
+            <p style="color: red">{{message}}</p>
             <button type="submit" class="btn btn-primary">Добавить пароль</button>
         </div>
+
     </form>
+    <div  style="margin: 20px; text-align: center">
+        <a href="/logout">
+        <button class="btn btn-primary">Выйти из аккаунта</button>
+    </a>
+    </div>
+
+
 
 
 </div>

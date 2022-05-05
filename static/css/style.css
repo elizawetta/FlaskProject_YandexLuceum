@@ -45,6 +45,26 @@
 }
 
 .psswd-table {
-    width: 60%;
+    width: 50%;
     margin: auto;
+}
+
+#password-input{
+    outline: none;
+	border: none;
+	background:none;
+	font-size: 16px;
+}
+
+.password-control {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	vertical-align : middle;
+	margin-left: 10px;
+	background: url("/static/img/view.svg") 0 0 no-repeat;
+}
+
+.password-control.view {
+	background: url("/static/img/no-view.svg") 0 0 no-repeat;
 }
